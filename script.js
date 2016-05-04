@@ -22,8 +22,6 @@ function init(){
 
 }
 
-
-
 function translate(){
 	var info = {
 	api : 'https://translate.yandex.net/api/v1.5/tr.json/translate',
@@ -86,7 +84,6 @@ function obrab(textEn, text){
 
 function topShow(){
 	event.preventDefault();
-	//blockTop
 	vars.blockTranslate.style.display = 'none';
 	vars.blockTop.style.display = 'block';
 	console.log('a1');
@@ -95,20 +92,30 @@ function topShow(){
 		var key;
 		var result;
 		var word =[];
-
+		
+		var ul = document.getElementsByTagName('ul');
 		for(var i=0; i<lslen; i++){
 			key = localStorage.key(i);
 			result = localStorage.getItem(key);
 			result = JSON.parse(result);
-			word[i] = result;
+			if(result.kol in word){
+				word[result.kol+1] = result;	
+			}else{
+				word[result.kol] = result;
+			}
 			//console.log(result.kol);
 		}
 		function compareNumeric(a, b) {
-		  if (a > b) return 1;
-		  if (a < b) return -1;
+		  if (a < b) return 1;
+		  if (a > b) return -1;
 		}
-		//word.sort(compareNumeric);
-		console.log(word);
+		word = word.sort(compareNumeric);
+		//console.log(word.length);//+1 ?
+		for(var i=0; i<word.length-1; i++){
+			var li = document.createElement('li');
+			li.innerHTML = word[i].en+' ('+word[i].kol+') '+' - '+word[i].ru;
+			ul[0].appendChild(li);
+		}
 	}
 }
 
