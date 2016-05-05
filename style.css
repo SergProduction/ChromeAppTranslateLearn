@@ -1,16 +1,20 @@
 body{
 	width: 255px;
 	height: 500px;
+	font-family: Open Sans,Helvetica Neue,sans-serif;
+	font-size: 14pt;
 }
 a{
-	float: left;
-	margin: 2px 20px;
+	margin: 5px 10px;
 }
 textarea{
 	max-width: 250px;
 	max-height: 150px;
 	width: 250px;
 	height: 150px;
+	margin: 10px 0;
+	font-family: monospace;
+    font-size: 16pt;
 }
 input[type='submit']{
 	width: 100%;
@@ -18,4 +22,7 @@ input[type='submit']{
 }
 #top{
 	display:none;
+}
+li{
+	list-style-type: decimal;
 }

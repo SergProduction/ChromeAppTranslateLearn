@@ -76,19 +76,18 @@ function obrab(textEn, text){
 		data = JSON.parse(data);
 		word.kol = data.kol+1;
 		word = JSON.stringify(word);
-		console.log(word);
 		localStorage.setItem(textEn, word);
 	}
-
 }
 
 function topShow(){
 	event.preventDefault();
 	vars.blockTranslate.style.display = 'none';
 	vars.blockTop.style.display = 'block';
-	console.log('a1');
 	var lslen = localStorage.length;
-	if(lslen > 0){
+	var beli = document.getElementsByTagName('li');
+	if( beli.length != 0 )return;
+	if( lslen == 0 )return;
 		var key;
 		var result;
 		var word =[];
@@ -116,7 +115,6 @@ function topShow(){
 			li.innerHTML = word[i].en+' ('+word[i].kol+') '+' - '+word[i].ru;
 			ul[0].appendChild(li);
 		}
-	}
 }
 
 function translateShow(){
