@@ -1,6 +1,7 @@
 var vars = {
 	a1 : null,
 	a2 : null,
+	a3 : null,
 	blockResponse : null,
 	blockTop : null,
 	blockTranslate : null,
@@ -11,6 +12,7 @@ function init(){
 
 	vars.a1 = document.getElementsByTagName('a')[0];
 	vars.a2 = document.getElementsByTagName('a')[1];
+	vars.a3 = document.getElementsByTagName('a')[2];
 	vars.blockResponse = document.getElementById('response');
 	vars.blockTop = document.getElementById('top');
 	vars.blockTranslate = document.getElementById('translate');
@@ -19,6 +21,7 @@ function init(){
 	vars.button.addEventListener('click', translate );
 	vars.a1.addEventListener('click', topShow );
 	vars.a2.addEventListener('click', translateShow );
+	vars.a3.addEventListener('click', clear );
 
 }
 
@@ -123,5 +126,12 @@ function translateShow(){
 	vars.blockTop.style.display = 'none';
 	vars.blockTranslate.style.display = 'block';
 	console.log('a2');
+}
+
+function clear(){
+	event.preventDefault();
+	localStorage.clear();
+	var ul = document.getElementsByTagName('ul');
+	ul[0].innerHTML = '';
 }
 document.addEventListener('DOMContentLoaded', init);
