@@ -51,7 +51,7 @@ function translate(){
 			if (req.status == 200){
 				text = JSON.parse(req.responseText);
 				text = text.text[0];
-  				obrab(textEn, text); // responseText -- текст ответа.
+  				obrab(textEn, text);
   			}
 		}
 	}
@@ -87,10 +87,9 @@ function topShow(){
 	event.preventDefault();
 	vars.blockTranslate.style.display = 'none';
 	vars.blockTop.style.display = 'block';
+	var beli = document.getElementsByTagName('li').length+1;
 	var lslen = localStorage.length;
-	var beli = document.getElementsByTagName('li');
-	if( beli.length != 0 )return;
-	if( lslen == 0 )return;
+	if( lslen == beli )return;
 		var key;
 		var result;
 		var word =[];
@@ -100,12 +99,12 @@ function topShow(){
 			key = localStorage.key(i);
 			result = localStorage.getItem(key);
 			result = JSON.parse(result);
-			if(result.kol in word){
-				word[result.kol+1] = result;	
+			/*if(result.kol in word){
+				word[result.kol+=1] = result;
 			}else{
 				word[result.kol] = result;
-			}
-			//console.log(result.kol);
+			}*/
+			word[i] = result;
 		}
 		function compareNumeric(a, b) {
 		  if (a < b) return 1;
@@ -122,14 +121,14 @@ function topShow(){
 
 function translateShow(){
 	event.preventDefault();
-	//blockTranslate
 	vars.blockTop.style.display = 'none';
 	vars.blockTranslate.style.display = 'block';
-	console.log('a2');
 }
 
 function clear(){
 	event.preventDefault();
+	var beli = document.getElementsByTagName('li');
+	if( beli.length == 0 )return;
 	localStorage.clear();
 	var ul = document.getElementsByTagName('ul');
 	ul[0].innerHTML = '';
