@@ -1,36 +1,9 @@
 var vars = {
-<<<<<<< HEAD
-	a1 : null,
-	a2 : null,
-	a3 : null,
-	a4 : null,
-	blockResponse : null,
-	blockTop : null,
-	blockTranslate : null,
-	button : null
-};
-
-function init(){
-
-	vars.a1 = document.getElementsByTagName('a')[0];
-	vars.a2 = document.getElementsByTagName('a')[1];
-	vars.a3 = document.getElementsByTagName('a')[2];
-	vars.a4 = document.getElementsByTagName('a')[3];
-	vars.blockResponse = document.getElementById('response');
-	vars.blockTop = document.getElementById('top');
-	vars.blockTranslate = document.getElementById('translate');
-	vars.button = document.getElementsByTagName('input')[0];
-
-	vars.button.addEventListener('click', translate );
-	vars.a1.addEventListener('click', topShow );
-	vars.a2.addEventListener('click', translateShow );
-	vars.a3.addEventListener('click', ru );
-	vars.a4.addEventListener('click', clear );
-
-=======
   a1 : null,
   a2 : null,
   a3 : null,
+  a4 : null,
+  lang: 'en-ru',
   blockResponse : null,
   blockTop : null,
   blockTranslate : null,
@@ -41,6 +14,7 @@ function init() {
   vars.a1 = document.getElementsByTagName('a')[0];
   vars.a2 = document.getElementsByTagName('a')[1];
   vars.a3 = document.getElementsByTagName('a')[2];
+  vars.a4 = document.getElementsByTagName('a')[3];
   vars.blockResponse = document.getElementById('response');
   vars.blockTop = document.getElementById('top');
   vars.blockTranslate = document.getElementById('translate');
@@ -49,19 +23,20 @@ function init() {
   vars.button.addEventListener('click', translate);
   vars.a1.addEventListener('click', topShow);
   vars.a2.addEventListener('click', translateShow);
-  vars.a3.addEventListener('click', clear);
->>>>>>> 68f85b820d89e37350cf0f2ddc84aa42b71fec85
+  vars.a3.addEventListener('click', ru );
+  vars.a4.addEventListener('click', clear );
+
 }
 function ru(){
-event.preventDefault();
-event.target.style.backgroundColor = '#A3FF7D';
+  event.preventDefault();
+  event.target.style.backgroundColor = (event.target.style.backgroundColor == '') ? '#A3FF7D' : '';
+  vars.lang = (event.target.style.backgroundColor == '') ? 'en-ru' : 'ru-en' ;
 }
 
 function translate() {
   var info = {
     api: 'https://translate.yandex.net/api/v1.5/tr.json/translate',
     key: 'trnsl.1.1.20160501T155658Z.8b673c0790c60468.ca0b364473891481bb8315a6d703ed2d4068aa35',
-    lang: 'en-ru',
   };
 
   var textEn = document.getElementsByTagName('textarea')[0].value;
@@ -70,7 +45,7 @@ function translate() {
 
   response.innerHTML = 'Перевод...';
 
-  var url = info.api + '?key=' + info.key + '&lang=' + info.lang; //+'&text='+text;
+  var url = info.api + '?key=' + info.key + '&lang=' + vars.lang; //+'&text='+text;
   var req = new XMLHttpRequest();
 
   req.open('POST', url, false);
@@ -95,7 +70,8 @@ function obrab(textEn, text) {
   vars.blockResponse.innerHTML = text;
 
   if (/\s/.test(textEn)) return;
-
+  if (vars.lang == 'ru-en') return;
+  if (textEn == text) return;
   var word = {
     ru: text,
     en: textEn,
