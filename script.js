@@ -87,7 +87,7 @@ function topShow(){
 	event.preventDefault();
 	vars.blockTranslate.style.display = 'none';
 	vars.blockTop.style.display = 'block';
-	var beli = document.getElementsByTagName('li').length+1;
+	var beli = document.getElementsByTagName('li').length;
 	var lslen = localStorage.length;
 	if( lslen == beli )return;
 		var key;
