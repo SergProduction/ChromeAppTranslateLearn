@@ -2,6 +2,7 @@ var vars = {
 	a1 : null,
 	a2 : null,
 	a3 : null,
+	a4 : null,
 	blockResponse : null,
 	blockTop : null,
 	blockTranslate : null,
@@ -13,6 +14,7 @@ function init(){
 	vars.a1 = document.getElementsByTagName('a')[0];
 	vars.a2 = document.getElementsByTagName('a')[1];
 	vars.a3 = document.getElementsByTagName('a')[2];
+	vars.a4 = document.getElementsByTagName('a')[3];
 	vars.blockResponse = document.getElementById('response');
 	vars.blockTop = document.getElementById('top');
 	vars.blockTranslate = document.getElementById('translate');
@@ -21,8 +23,13 @@ function init(){
 	vars.button.addEventListener('click', translate );
 	vars.a1.addEventListener('click', topShow );
 	vars.a2.addEventListener('click', translateShow );
-	vars.a3.addEventListener('click', clear );
+	vars.a3.addEventListener('click', ru );
+	vars.a4.addEventListener('click', clear );
 
+}
+function ru(){
+event.preventDefault();
+event.target.style.backgroundColor = '#A3FF7D';
 }
 
 function translate(){

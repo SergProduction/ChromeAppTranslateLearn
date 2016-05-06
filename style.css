@@ -5,7 +5,11 @@ body{
 	font-size: 14pt;
 }
 a{
-	margin: 5px 10px;
+	margin: 5px 5px;
+	color: #000;
+}
+a:nth-child(3){
+	padding: 2px 8px;
 }
 textarea{
 	max-width: 250px;
