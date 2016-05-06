@@ -94,32 +94,33 @@ function topShow(){
 		var result;
 		var word =[];
 		
-		var ul = document.getElementsByTagName('ul');
-		for(var i=0; i<lslen; i++){
+		for ( var i=0; i<lslen; i++ ){
 			key = localStorage.key(i);
 			result = localStorage.getItem(key);
 			result = JSON.parse(result);
-			if(result.kol in word){
-				if(Array.isArray(word[result.kol])==false){
-					word[result.kol] = new Array(result);
-				}
+			if ( Array.isArray(word[result.kol] )==false){
+				word[result.kol] = new Array(result);
+			}
+			else {
 				word[result.kol].push(result);
-			}else{
-				word[result.kol] = result;
 			}
 		}
-		console.log(word);
-		/*function compareNumeric(a, b) {
-		  if (a < b) return 1;
-		  if (a > b) return -1;
+		var ul = document.getElementsByTagName('ul');
+		//console.log(word);
+		function compareNumeric(a, b) {
+		  if (a > b) return 1;
+		  if (a < b) return -1;
 		}
 		word = word.sort(compareNumeric);
 		//console.log(word.length);//+1 ?
-		for(var i=0; i<word.length-1; i++){
-			var li = document.createElement('li');
-			li.innerHTML = word[i].en+' ('+word[i].kol+') '+' - '+word[i].ru;
-			ul[0].appendChild(li);
-		}*/
+		for(var i=0; i < word.length-1; i++){
+
+			for(var x=0; x < word[i].length; x++){
+				var li = document.createElement('li');
+				li.innerHTML = word[i][x].en+' ('+word[i][x].kol+') '+' - '+word[i][x].ru;
+				ul[0].appendChild(li);
+			}
+		}
 }
 
 function translateShow(){
